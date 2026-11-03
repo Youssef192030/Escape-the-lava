@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://iornlh3cbrkl"]
+
+[ext_resource type="Script" uid="uid://cdnseyp4esd72" path="res://Scripts/fall.gd" id="1_a1d3u"]
+[ext_resource type="Texture2D" uid="uid://crcd6qt1rnxbe" path="res://Assets/partical.png" id="1_n76s2"]
+
+[sub_resource type="Curve" id="Curve_n76s2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vaj2a"]
+colors = PackedColorArray(0.69135684, 0.6913568, 0.69135684, 1, 1, 1, 1, 1)
+
+[node name="fall" type="CPUParticles2D" unique_id=711737423]
+texture_filter = 1
+emitting = false
+amount = 30
+texture = ExtResource("1_n76s2")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 50)
+initial_velocity_max = 99.51
+angular_velocity_max = 313.67
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_n76s2")
+color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+color_ramp = SubResource("Gradient_vaj2a")
+script = ExtResource("1_a1d3u")

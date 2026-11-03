@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://di385vgpcblmt"]
+
+[ext_resource type="Script" uid="uid://ctecill02tnp2" path="res://Scripts/potion.gd" id="1_nymo1"]
+[ext_resource type="Texture2D" uid="uid://k6d50te0mod3" path="res://Assets/tileset_16x16.png" id="2_xi5ht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nw7c"]
+size = Vector2(12, 14)
+
+[sub_resource type="Curve" id="Curve_nymo1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.44943827), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xi5ht"]
+offsets = PackedFloat32Array(0, 0.6111111, 0.9876543)
+colors = PackedColorArray(0.78, 0, 0, 1, 0.82, 0.5193333, 0, 1, 1, 1, 1, 0)
+
+[node name="Potion" type="Area2D" unique_id=538192545]
+script = ExtResource("1_nymo1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1424873310]
+shape = SubResource("RectangleShape2D_0nw7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=493227195]
+texture_filter = 1
+texture = ExtResource("2_xi5ht")
+region_enabled = true
+region_rect = Rect2(242.21747, 65.40457, 11.579666, 14.907608)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=102802613]
+position = Vector2(0, -8)
+lifetime = 1.3
+speed_scale = 0.7
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector2(0, -50)
+initial_velocity_max = 4.0
+angular_velocity_min = -166.96
+angular_velocity_max = 20.0
+linear_accel_max = 10.0
+radial_accel_max = 14.49
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_nymo1")
+color_ramp = SubResource("Gradient_xi5ht")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

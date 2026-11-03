@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cu542uwbgfw3p"]
+
+[ext_resource type="Script" uid="uid://bjk6uri1ffiq" path="res://Scripts/spike.gd" id="1_1hotg"]
+[ext_resource type="Texture2D" uid="uid://chcaj0br1e6e7" path="res://Assets/spikes.png" id="2_2mnih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxds"]
+size = Vector2(64, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hotg"]
+size = Vector2(32, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mnih"]
+size = Vector2(14, 1022)
+
+[sub_resource type="Animation" id="Animation_1hotg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2mnih"]
+resource_name = "alpha"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fhxds"]
+_data = {
+&"RESET": SubResource("Animation_1hotg"),
+&"alpha": SubResource("Animation_2mnih")
+}
+
+[node name="Spike" type="CharacterBody2D" unique_id=979060144]
+script = ExtResource("1_1hotg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1964354161]
+texture_filter = 1
+rotation = -3.1415925
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2mnih")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068779345]
+position = Vector2(0, -3.25)
+scale = Vector2(0.5, 0.53)
+shape = SubResource("RectangleShape2D_fhxds")
+
+[node name="killarea" type="Area2D" parent="." unique_id=2045998320 groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killarea" unique_id=198412005]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_1hotg")
+
+[node name="fallarea" type="Area2D" parent="." unique_id=1872598343]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fallarea" unique_id=1061942203]
+position = Vector2(0, 519)
+shape = SubResource("RectangleShape2D_2mnih")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1440345156]
+libraries/ = SubResource("AnimationLibrary_fhxds")
+
+[connection signal="body_entered" from="killarea" to="." method="_on_killarea_body_entered"]
+[connection signal="body_entered" from="fallarea" to="." method="_on_fallarea_body_entered"]

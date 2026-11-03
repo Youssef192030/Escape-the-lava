@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dgtmd2v0spbax"]
+
+[ext_resource type="Texture2D" uid="uid://dxp8h6wmp32ir" path="res://Assets/heart+empty.png" id="1_dxtgh"]
+[ext_resource type="Texture2D" uid="uid://y4wrbhf5c71v" path="res://Assets/heart+fill.png" id="2_qipxh"]
+
+[node name="Player_UI" type="CanvasLayer" unique_id=1431262205]
+
+[node name="Health" type="TextureProgressBar" parent="." unique_id=1705882933]
+texture_filter = 1
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 41.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+max_value = 3.0
+value = 3.0
+texture_under = ExtResource("1_dxtgh")
+texture_progress = ExtResource("2_qipxh")
+
+[node name="stamina" type="TextureProgressBar" parent="." unique_id=1002942246]
+texture_filter = 1
+offset_left = 3.0
+offset_top = 60.0
+offset_right = 41.0
+offset_bottom = 72.0
+scale = Vector2(4, 4)
+step = 0.1
+value = 100.0
+texture_under = ExtResource("1_dxtgh")
+texture_progress = ExtResource("2_qipxh")
+tint_progress = Color(0, 0.0666666, 1, 1)
